@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "GET — проверка несуществующего пользователя",
+      "method": "GET",
+      "path": "/?query=unknown@test.com",
+      "expectedStatus": 200,
+      "expectedBody": { "found": false },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST — добавление пользователя",
+      "method": "POST",
+      "path": "/",
+      "body": { "name": "Тест Юзер", "email": "testuser@krosno.app" },
+      "expectedStatus": 200,
+      "expectedBody": { "success": true },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "GET — найти добавленного пользователя",
+      "method": "GET",
+      "path": "/?query=testuser@krosno.app",
+      "expectedStatus": 200,
+      "expectedBody": { "found": true },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
